@@ -13,7 +13,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"strings"
 
 	"github.com/mentai-mayo/gotools/formats"
 )
@@ -21,8 +20,8 @@ import (
 func main() {
 	err := ReturnError()
 	if err != nil {
-		list, _ := formats.Formats("[main]", "こんなエラーがでたよ: %s", err)
-		fmt.Println(strings.Join(list, " "))
+		str, _ := formats.Sprintf("[main]", "こんなエラーがでたよ: %s", err)
+		fmt.Println(str)
 	}
 }
 
