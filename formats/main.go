@@ -3,7 +3,16 @@ package formats
 import (
 	"fmt"
 	"reflect"
+	"strings"
 )
+
+func Sprintf(args ...any) (string, error) {
+	result, err := Formats(args...)
+	if err != nil {
+		return "", err
+	}
+	return strings.Join(result, " "), nil
+}
 
 func Formats(args ...any) (result []string, err error) {
 	defer func() {

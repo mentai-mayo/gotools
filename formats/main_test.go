@@ -47,3 +47,27 @@ func TestFormats(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"not string -> 12, F"}, result)
 }
+
+func TestSprintf(t *testing.T) {
+	var result string
+	var err error
+
+	// #1
+	result, err = formats.Sprintf("ただ", "つなげる", "だけ")
+	assert.NoError(t, err)
+	assert.Equal(t, "ただ つなげる だけ", result)
+
+	// #2
+	result, err = formats.Sprintf("this %s correct", "is")
+	assert.NoError(t, err)
+	assert.Equal(t, "this is correct", result)
+
+	// #3
+	result, err = formats.Sprintf("not string -> %d, %X", 12, 15)
+	assert.NoError(t, err)
+	assert.Equal(t, "not string -> 12, F", result)
+
+	// #4
+	result, err = formats.Sprintf("this %s %s correct", "is" /*, "not" */)
+	assert.Error(t, err)
+}
